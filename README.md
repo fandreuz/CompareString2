@@ -1,6 +1,6 @@
 # CompareString2
 
-[![](https://jitpack.io/v/fAndreuzzi/CompareString2.svg)](https://jitpack.io/#fAndreuzzi/CompareString2)[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![](https://jitpack.io/v/fAndreuzzi/CompareString2.svg)](https://jitpack.io/#fAndreuzzi/CompareString2)   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This library is a **wrapper** of *tdebatty*'s [**java-string-similarity**](https://github.com/tdebatty/java-string-similarity). It provides many methods to perform **String** comparison with various algorithms.
 
@@ -16,17 +16,17 @@ dependencies {
 ```xml
 // maven
 <dependency>
-    <groupId>com.github.fAndreuzzi</groupId>
-    <artifactId>CompareString2</artifactId>
-	  <version>v1.0</version>
+  <groupId>com.github.fAndreuzzi</groupId>
+  <artifactId>CompareString2</artifactId>
+  <version>v1.0</version>
 </dependency>
 
 // but remember to add jitpack
 <repositories>
- <repository>
-  <id>jitpack.io</id>
-  <url>https://jitpack.io</url>
- </repository>
+  <repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+  </repository>
 </repositories>
 ```
 
