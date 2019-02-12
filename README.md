@@ -54,8 +54,6 @@ Every array returned by CompareString2 is sorted by **descendent** order. The or
 Note that the sorting order isn't always the same. There are some cases where the result `0` means that the strings are totally **different** (*distance* algorithms), while in other cases the result `0` means **equals** (*similarity* algorithms).<br>
 If you want to get information about this topic, check [this](https://github.com/tdebatty/java-string-similarity#normalized-metric-similarity-and-distance) section of the GitHub page of [java-string-similarity](https://github.com/tdebatty/java-string-similarity).
 
-<br>
-
 ```java
 String s1 = "wahssapp";
 String[] ss = new String[] {"Facebook", "Instagram", "Snapchat", "Twitter", "WhatsApp", "Reddit"};
@@ -73,13 +71,14 @@ String[] topN = Compare.topNmatches(s1, ss, AlgMap.NormSimAlg.JACCARD, 4);
 // '4' is an optional argument of the algorithm "Jaccard"
 ```
 
-<br><br>
+<br>
 
 Let's redefine `s1`and `ss`. You will notice that, while `s1` **needs** to be a `String` object, `ss` can be **any** `Iterable<? extends Object>`. We use the method `toString()` to get a comparable `String`.
 
 ```java
 String s1 = "jonn";
-List<Contact> ss = Arrays.asList(new Contact[] {new Contact("John", "Doe"), new Contact("Mario", "Rossi"), new Contact("Santa", "Claus")});
+List<Contact> ss = Arrays.asList(new Contact[] {new Contact("John", "Doe"),
+    new Contact("Mario", "Rossi"), new Contact("Santa", "Claus")});
 
 .
 .
