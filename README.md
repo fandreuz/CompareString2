@@ -1,5 +1,37 @@
 # CompareString2
 
+[![](https://jitpack.io/v/fAndreuzzi/CompareString2.svg)](https://jitpack.io/#fAndreuzzi/CompareString2)
+
+This library is a **wrapper** of *tdebatty*'s [**java-string-similarity**](https://github.com/tdebatty/java-string-similarity). It provides many methods to perform **String** comparison with various algorithms.
+
+## Get CompareString2
+
+```gradle
+// gradle
+dependencies {
+    implementation 'com.github.fAndreuzzi:CompareString2:v1.0'
+}
+```
+
+```maven
+// maven
+<dependency>
+	  <groupId>com.github.fAndreuzzi</groupId>
+	  <artifactId>CompareString2</artifactId>
+	  <version>v1.0</version>
+</dependency>
+
+// but remember to add jitpack
+<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+</repositories>
+```
+
+Otherwise you can get the last `CompareString2-*.jar` file from the `target` folder.
+
 ## Distance
 
 **Algorithm** | **ID**
