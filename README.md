@@ -9,7 +9,7 @@ This library is a **wrapper** of *tdebatty*'s [**java-string-similarity**](https
 ### Gradle
 ```gradle
 dependencies {
-    implementation 'com.github.fAndreuzzi:CompareString2:v1.0'
+    implementation 'com.github.fAndreuzzi:CompareString2:v1.0.1'
 }
 ```
 
@@ -18,7 +18,7 @@ dependencies {
 <dependency>
   <groupId>com.github.fAndreuzzi</groupId>
   <artifactId>CompareString2</artifactId>
-  <version>v1.0</version>
+  <version>v1.0.1</version>
 </dependency>
 ```
 
