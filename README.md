@@ -47,11 +47,11 @@ Algorithm ngram = AlgMap.NormDistAlg.NGRAM.buildArg(n);
 ```
 You can check the [**Javadoc**](https://fandreuzzi.github.io/CompareString2-Javadoc/) page for the algorithm [NGRAM](https://fandreuzzi.github.io/CompareString2-Javadoc/ohi/andre/comparestring2/algs/NGram.html).
 
-### List comparisons
+### List comparison
 
 #### Sorting order
 Every array returned by CompareString2 is sorted by **descendent** order. The order is based on the **result** got by the entry during the comparison with `s1` using the given algorithm.<br>
-Note that the sorting order isn't always the same. There are some cases where the result `0` means that the strings are totally **different** (*distance* algorithms), while in other cases the result `0` means **equals** (*similarity* algorithms).<br>
+Note that the sorting order isn't always the same. There are some cases where the result `0` means that the strings are totally **different** (*distance* algorithms), while in other cases the result `0` means **equal** (*similarity* algorithms).<br>
 If you want to get information about this topic, check [this](https://github.com/tdebatty/java-string-similarity#normalized-metric-similarity-and-distance) section of the GitHub page of [java-string-similarity](https://github.com/tdebatty/java-string-similarity).
 
 ```java
@@ -94,54 +94,84 @@ class Contact {
 }
 ```
 
+#### With deadline
+```java
+float deadline = 0.55;
+Algorithm sordice = AlgMap.NormSimAlg.SORENSENDICE.buildAlg();
+Object[] aboveDeadline = Compare.withDeadline(s1, ss.size(), ss, deadline, sordice, AlgMap.NormSimAlg.SORENSENDICE);
+```
 
+Since `AlgMap.NormSimAlg.SORENSENDICE` is in the category *normalized similarity*, `0` means totally **different**, and `1` means **equal**. So a bigger result means an higher similarity, and this gives the sorting order of the returned array. Check [here](https://github.com/fAndreuzzi/CompareString2#sorting-order) for more details.
 
-## Distance
+<br>
 
-**Algorithm** | **ID**
---- | ---
-LCS | 0
-OSA | 1
-QGRAM | 2
+#### Splitter
 
-## Normalized distance
+Let's redefine one more time `s1`, `ss`, and a new `String[]` object called `splitter`:
+```java
+String[] splitter = new String[] {"-", "_"};
+String s1 = "values";
+Set<MyFile> files = new HashSet<>(Arrays.asList(new MyFile[] {new MyFile("xml-entries.xml"),
+    new MyFile("json_elements.json"), new MyFile("csv-values.xml"), new MyFile("JSON_values.xml")}));
+```
 
-**Algorithm** | **ID**
---- | ---
-COSINE | 4
-JACCARD | 5
-JAROWRINKLER | 6
-METRICLCS | 7
-NGRAM | 8
-NLEVENSHTEIN | 9
-SORENSENDICE | 10
+If you use any **CompareString2** passing `s1` and `files` you will likely get an unwanted value. We're interested in `csv-values.xml`, but since every String comparison algorithm is quite *linear*, the `csv-` part will be considered **before** the `values.xml` part; the algorithm will try to compare the two strings linearly, and the outcome will be worse than we would.<br>
+You can avoid this problem passing a `String[]` object as a `splitter`. The following is a **pseudo** version of the process:
+```java
+double result = veryBadResult;
+for(Object obj : files) {
+  for(String spl : splitter) {
+    for(String s : files.toString().split(spl)) {
+      // keep the better result
+      result = keepBetter(result, Compare.compare(s, s1, alg));
+    }
+  }
+}
+return result;
+```
+You can use the **splitter** feature with every method in the [List comparison](https://github.com/fAndreuzzi/CompareString2#list-comparison).
 
-## Normalized similarity
+#### Deadline + Top N
+This method returns a `MyFile[]` object which contains **only** `MyFile` objects whose comparison result with `s1` is greater than or equal to `deadline`. The length of the array will be between `0` and `n`.
+```java
+float deadline = 5;
+int n = 2;
+Algorithm lcs = AlgMap.NormSimAlg.LCS.buildAlg();
+MyFile[] objs = Compare.topMatchesWithDeadline(s1, files.size(), files, n, deadline, splitter, damerau, AlgMap.NormSimAlg.SORENSENDICE);
+```
 
-**Algorithm** | **ID**
---- | ---
-COSINE | 11
-JACCARD | 12
-JAROWRINKLER | 13
-NLEVENSHTEIN | 14
-SORENSENDICE | 15
+## Algorithms
+Please refer to [tdebatty/java-string-similarity](https://github.com/tdebatty/java-string-similarity) for a detailed description of every **algorithm**.<br>
+Some algorithms are listed two or three times. This means that they comes in more than one version (*Normalized distance*, *Normalized similarity*, ...).
 
-## Metric distance
+**Category** | **Algorithm** | **Needed args** | **Optional args**
+:--- | ---: | :---: | :---:
+*Distance* | LCS | / | /
+*Distance* | OSA | / | /
+*Distance* | QGRAM | / | int
+*Distance* | WLEVENSHTEIN | CharacterSubstitutionInterface | CharacterInsDelInterface
+*Normalized distance* | COSINE | / | int
+*Normalized distance* | JACCARD | / | int
+*Normalized distance* | JAROWRINKLER | / | int
+*Normalized distance* | METRICLCS | / | /
+*Normalized distance* | NGRAM | / | int
+*Normalized distance* | NLEVENSHTEIN | / | /
+*Normalized distance* | SORENSENDICE | / | int
+*Normalized similarity* | COSINE | / | int
+*Normalized similarity* | JACCARD | / | int
+*Normalized similarity* | JAROWRINKLER | / | int
+*Normalized similarity* | NLEVENSHTEIN | / | /
+*Normalized similarity* | SORENSENDICE | / | int
+*Metric distance* | DAMERAU | / | /
+*Metric distance* | JACCARD | / | int
+*Metric distance* | LEVENSHTEIN | / | /
+*Metric distance* | METRICLCS | / | /
 
-**Algorithm** | **ID**
---- | ---
-DAMERAU | 16
-JACCARD | 17
-LEVENSHTEIN | 18
-METRICLCS | 19
+## Deadline
 
-# Deadline
-
-**Algorithm Type** | **Equal** | **Different**
---- | --- | ---
+**Category** | **Equals** | **Different**
+:--- | :---: | :---:
 Distance | 0 | +Infinity
 Normalized distance | 0 | 1
 Normalized similarity | 1 | 0
 Metric distance | 0 | +Infinity
-
-Please refer to [tdebatty/java-string-similarity](https://github.com/tdebatty/java-string-similarity) for a deatiled description of every **algorithm**.
