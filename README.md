@@ -139,7 +139,7 @@ MyFile[] objs = Compare.topMatchesWithDeadline(s1, files.size(), files, n, deadl
 ```
 
 ## Algorithms
-Please refer to [tdebatty/java-string-similarity](https://github.com/tdebatty/java-string-similarity) for a detailed description of every **algorithm**.<br>
+Please refer to [tdebatty/java-string-similarity](https://github.com/tdebatty/java-string-similarity) for a detailed description for each **algorithm**.<br>
 Some algorithms are listed two or three times. This means that they comes in more than one version (*Normalized distance*, *Normalized similarity*, ...).
 
 **Category** | **Algorithm** | **Needed args** | **Optional args**
