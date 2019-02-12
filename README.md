@@ -176,4 +176,5 @@ Metric distance | 0 | +Infinity
 
 ## Known users
 * [**Linux CLI Launcher**](https://github.com/fAndreuzzi/TUI-ConsoleLauncher)
+
 Please, let me know if you used **CompareString2** in your project :D
