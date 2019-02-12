@@ -27,6 +27,7 @@ import java.lang.reflect.Array;
 import ohi.andre.comparestring2.AlgMap.Alg;
 
 /**
+ * This class contains some useful methods for the {@link Compare} class
  *
  * @author francescoandreuzzi
  */
