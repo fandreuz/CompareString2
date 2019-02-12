@@ -89,9 +89,7 @@ public class AlgMap {
     
     public static enum DistAlg implements Alg {
         /**
-         * {@link LongestCommonSubsequence}
-         * Needed: nothing
-         * Optional: nothing
+         * Check {@link LongestCommonSubsequence}
          */
         LCS {
             @Override
@@ -100,9 +98,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link OptimalStringAlignment}
-         * Needed: nothing
-         * Optional: nothing
+         * Check {@link OptimalStringAlignment}
          */
         OSA {
             @Override
@@ -111,9 +107,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link QGram}
-         * Needed: nothing
-         * Optional: {@link Integer}
+         * Check {@link QGram}
          */
         QGRAM {
             @Override
@@ -128,9 +122,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link WeightedLevenshtein}
-         * Needed: {@link CharacterSubstitutionInterface} 
-         * Optional: {@link CharacterInsDelInterface}
+         * Check {@link WeightedLevenshtein}
          */
         WLEVENSHTEIN {
             @Override
@@ -179,9 +171,7 @@ public class AlgMap {
     
     public static enum NormDistAlg implements Alg {
         /**
-         * {@link Cosine}
-         * Needed: nothing
-         * Optional: {@link Integer}
+         * Check {@link Cosine}
          */
         COSINE {
             @Override
@@ -196,9 +186,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link Jaccard}
-         * Needed: nothing
-         * Optional: {@link Integer}
+         * Check {@link Jaccard}
          */
         JACCARD {
             @Override
@@ -213,9 +201,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link JaroWinkler}
-         * Needed: nothing
-         * Optional: {@link Integer}
+         * Check {@link JaroWinkler}
          */
         JAROWRINKLER {
             @Override
@@ -230,9 +216,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link MetricLCS}
-         * Needed: nothing
-         * Optional: nothing
+         * Check {@link MetricLCS}
          */
         METRICLCS {
             @Override
@@ -242,9 +226,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link NGram}
-         * Needed: nothing
-         * Optional: nothing
+         * Check {@link NGram}
          */
         NGRAM {
             @Override
@@ -259,9 +241,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link NormalizedLevenshtein}
-         * Needed: nothing
-         * Optional: nothing
+         * Check {@link NormalizedLevenshtein}
          */
         NLEVENSHTEIN {
             @Override
@@ -271,9 +251,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link SorensenDice}
-         * Needed: nothing
-         * Optional: {@link Integer}
+         * Check {@link SorensenDice}
          */
         SORENSENDICE {
             @Override
@@ -318,9 +296,7 @@ public class AlgMap {
     
     public static enum NormSimAlg implements Alg {
         /**
-         * {@link Cosine}
-         * Needed: nothing
-         * Optional: {@link Integer}
+         * Check {@link Cosine}
          */
         COSINE {
             @Override
@@ -335,9 +311,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link Jaccard}
-         * Needed: nothing
-         * Optional: {@link Integer}
+         * Check {@link Jaccard}
          */
         JACCARD {
             @Override
@@ -352,9 +326,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link JaroWinkler}
-         * Needed: nothing
-         * Optional: {@link Integer}
+         * Check {@link JaroWinkler}
          */
         JAROWRINKLER {
             @Override
@@ -369,9 +341,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link NormalizedLevenshtein}
-         * Needed: nothing
-         * Optional: nothing
+         * Check {@link NormalizedLevenshtein}
          */
         NLEVENSHTEIN {
             @Override
@@ -381,9 +351,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link SorensenDice}
-         * Needed: nothing
-         * Optional: {@link Integer}
+         * Check {@link SorensenDice}
          */
         SORENSENDICE {
             @Override
@@ -438,9 +406,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link Jaccard}
-         * Needed: nothing
-         * Optional: {@link Integer}
+         * Check {@link Jaccard}
          */
         JACCARD {
             @Override
@@ -455,9 +421,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link Levenshtein}
-         * Needed: nothing
-         * Optional: nothing
+         * Check {@link Levenshtein}
          */
         LEVENSHTEIN {
             @Override
@@ -467,9 +431,7 @@ public class AlgMap {
             }
         },
         /**
-         * {@link MetricLCS}
-         * Needed: nothing
-         * Optional: nothing
+         * Check {@link MetricLCS}
          */
         METRICLCS {
             @Override

@@ -62,8 +62,8 @@ public class Utils {
      * @return          an array of {@code T} containing the first {@code n} elements of {@code items}
      */
     public static <T> T[] gather(Class<T> c, Compare.CompareItem[] items, int n) {
-        T[] array = (T[]) Array.newInstance(c, n);
-        for(int i = 0; i <= n && i < items.length; i++) {
+        T[] array = (T[]) Array.newInstance(c, Math.min(n, items.length - 1));
+        for(int i = 0; i <= array.length; i++) {
             array[i] = (T) items[i].o;
         }
         
