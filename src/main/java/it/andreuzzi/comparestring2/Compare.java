@@ -125,6 +125,7 @@ public class Compare {
     
     /**
      * 
+     * @param <T>         the class of the returned value
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param alg         an instance  of {@link Alg}. Check {@link AlgMap} 
@@ -136,7 +137,7 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned value 
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param algInstance an instance of {@link Algorithm} that will be used to perform the comparison
@@ -148,7 +149,7 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned value 
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param splitters   refer to {@link Compare#checkSplits checkSplits}
@@ -162,7 +163,7 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned value
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param splitters   refer to {@link Compare#checkSplits checkSplits}
@@ -179,7 +180,7 @@ public class Compare {
 //    --------------------------------------------------------
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param n           the length of the returned array object
@@ -192,7 +193,7 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param n           the length of the returned array object
@@ -205,7 +206,7 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param n           the length of the returned array object
@@ -220,7 +221,7 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param n           the length of the returned array object
@@ -236,7 +237,7 @@ public class Compare {
 //    --------------------------------------------------------
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param deadline    the min/max rank of the elements in the array which is returned
@@ -251,7 +252,7 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array 
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param deadline    the min/max rank of the elements in the array which is returned
@@ -266,7 +267,7 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param deadline    the min/max rank of the elements in the array which is returned
@@ -283,7 +284,7 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param deadline    the min/max rank of the elements in the array which is returned
@@ -301,7 +302,7 @@ public class Compare {
 //    --------------------------------------------------------
 
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param n           the maximum number of elements of the returned array
@@ -317,7 +318,7 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param n           the maximum number of elements of the returned array
@@ -333,7 +334,7 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param n           the maximum number of elements of the returned array
@@ -351,7 +352,7 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param ss          the {@code T[]} object whose elements will be compared to {@code s1}
      * @param n           the maximum number of elements of the returned array
@@ -370,10 +371,10 @@ public class Compare {
 //    ----------------------------------------------------------------------------------------------------------------
     
     /**
-     * 
+     * @param <T>         the class of the returned value
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param alg         an instance  of {@link Alg}. Check {@link AlgMap} 
      * @param args        a list of Object that can be used to build an instance of {@link Algorithm}
      * @return            the best match with {@code s1} within {@code ss}, found using the given {@link Alg} {@code alg}
@@ -383,10 +384,10 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned value
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param algInstance an instance of {@link Algorithm} that will be used to perform the comparison
      * @param alg         an instance of {@link Alg}. It must refer to the same algorithm referred by {@code algInstance}. Check {@link AlgMap} 
      * @return            the best match with {@code s1} within {@code ss}, found using the given {@link Alg} {@code alg}
@@ -396,10 +397,10 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned value
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param splitters   refer to {@link Compare#checkSplits checkSplits}
      * @param alg         an instance  of {@link Alg}. Check {@link AlgMap} 
      * @param args        a list of Object that can be used to build an instance of {@link Algorithm}
@@ -411,10 +412,10 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned value
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param splitters   refer to {@link Compare#checkSplits checkSplits}
      * @param algInstance an instance of {@link Algorithm} that will be used to perform the comparison
      * @param alg         an instance of {@link Alg}. It must refer to the same algorithm referred by {@code algInstance}. Check {@link AlgMap} 
@@ -429,10 +430,10 @@ public class Compare {
 //    --------------------------------------------------------
     
     /**
-     * 
+     * @param <T>         the class of the returned array 
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param n           the length of the returned array object
      * @param alg         an instance  of {@link Alg}. Check {@link AlgMap} 
      * @param args        a list of Object that can be used to build an instance of {@link Algorithm}
@@ -443,10 +444,10 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param n           the length of the returned array object
      * @param algInstance an instance of {@link Algorithm} that will be used to perform the comparison
      * @param alg         an instance of {@link Alg}. It must refer to the same algorithm referred by {@code algInstance}. Check {@link AlgMap} 
@@ -457,10 +458,10 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param n           the length of the returned array object
      * @param splitters   refer to {@link Compare#checkSplits checkSplits}
      * @param alg         an instance  of {@link Alg}. Check {@link AlgMap} 
@@ -473,10 +474,10 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param n           the length of the returned array object
      * @param splitters   refer to {@link Compare#checkSplits checkSplits}
      * @param algInstance an instance of {@link Algorithm} that will be used to perform the comparison
@@ -493,10 +494,10 @@ public class Compare {
 //    --------------------------------------------------------
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param deadline    the min/max rank of the elements in the array which is returned
      * @param alg         an instance  of {@link Alg}. Check {@link AlgMap} 
      * @param args        a list of Object that can be used to build an instance of {@link Algorithm}
@@ -509,10 +510,10 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param deadline    the min/max rank of the elements in the array which is returned
      * @param algInstance an instance of {@link Algorithm} that will be used to perform the comparison
      * @param alg         an instance of {@link Alg}. It must refer to the same algorithm referred by {@code algInstance}. Check {@link AlgMap} 
@@ -525,10 +526,10 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param deadline    the min/max rank of the elements in the array which is returned
      * @param splitters   refer to {@link Compare#checkSplits checkSplits}
      * @param alg         an instance  of {@link Alg}. Check {@link AlgMap} 
@@ -543,10 +544,10 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param deadline    the min/max rank of the elements in the array which is returned
      * @param splitters   refer to {@link Compare#checkSplits checkSplits}
      * @param algInstance an instance of {@link Algorithm} that will be used to perform the comparison
@@ -566,10 +567,10 @@ public class Compare {
 //    --------------------------------------------------------    
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param n           the maximum number of elements of the returned array
      * @param deadline    the min/max rank of the elements in the array which is returned
      * @param alg         an instance  of {@link Alg}. Check {@link AlgMap} 
@@ -583,10 +584,10 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param n           the maximum number of elements of the returned array
      * @param deadline    the min/max rank of the elements in the array which is returned
      * @param algInstance an instance of {@link Algorithm} that will be used to perform the comparison
@@ -600,10 +601,10 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param n           the maximum number of elements of the returned array
      * @param deadline    the min/max rank of the elements in the array which is returned
      * @param splitters   refer to {@link Compare#checkSplits checkSplits}
@@ -619,10 +620,10 @@ public class Compare {
     }
     
     /**
-     * 
+     * @param <T>         the class of the returned array
      * @param s1          the first {@link String} of the comparison
      * @param size        the number of elements in {@code ss}
-     * @param ss          an {@link Iterable<T>} object whose elements will be compared to {@code s1}
+     * @param ss          an {@link Iterable} object whose elements will be compared to {@code s1}
      * @param n           the maximum number of elements of the returned array
      * @param deadline    the min/max rank of the elements in the array which is returned
      * @param splitters   refer to {@link Compare#checkSplits checkSplits}

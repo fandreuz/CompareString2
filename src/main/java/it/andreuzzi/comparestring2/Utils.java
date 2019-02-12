@@ -55,7 +55,7 @@ public class Utils {
     }*/
     
     /**
-     * 
+     * @param <T>       the class of the returned array
      * @param c         the class that will be used to cast the returned elements
      * @param items     a sorted array of {@link Compare.CompareItem}
      * @param n         the length of the returned array
