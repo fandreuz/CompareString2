@@ -14,7 +14,7 @@ dependencies {
 ```
 
 ```maven
-// maven
+// xml
 <dependency>
 	  <groupId>com.github.fAndreuzzi</groupId>
 	  <artifactId>CompareString2</artifactId>
