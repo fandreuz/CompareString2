@@ -103,8 +103,6 @@ Object[] aboveDeadline = Compare.withDeadline(s1, ss.size(), ss, deadline, sordi
 
 Since `AlgMap.NormSimAlg.SORENSENDICE` is in the category *normalized similarity*, `0` means totally **different**, and `1` means **equal**. So a bigger result means an higher similarity, and this gives the sorting order of the returned array. Check [here](https://github.com/fAndreuzzi/CompareString2#sorting-order) for more details.
 
-<br>
-
 #### Splitter
 
 Let's redefine one more time `s1`, `ss`, and a new `String[]` object called `splitter`:
@@ -145,7 +143,7 @@ Please refer to [tdebatty/java-string-similarity](https://github.com/tdebatty/ja
 Some algorithms are listed two or three times. This means that they comes in more than one version (*Normalized distance*, *Normalized similarity*, ...).
 
 **Category** | **Algorithm** | **Needed args** | **Optional args**
-:--- | ---: | :---: | :---:
+:--- | :--- | :---: | :---:
 *Distance* | LCS | / | /
 *Distance* | OSA | / | /
 *Distance* | QGRAM | / | int
