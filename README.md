@@ -165,7 +165,7 @@ Some algorithms are listed two or three times. This means that they comes in mor
 *Metric distance* | LEVENSHTEIN | / | /
 *Metric distance* | METRICLCS | / | /
 
-## Deadline
+### Result ranges
 
 **Category** | **Equals** | **Different**
 :--- | :---: | :---:
