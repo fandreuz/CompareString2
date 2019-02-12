@@ -7,7 +7,7 @@ This library is a **wrapper** of *tdebatty*'s [**java-string-similarity**](https
 ## Get CompareString2
 
 ### Gradle
-```
+```gradle
 dependencies {
     implementation 'com.github.fAndreuzzi:CompareString2:v1.0'
 }
@@ -22,8 +22,10 @@ dependencies {
 </dependency>
 ```
 
-### Jar
+### JAR
 You can get the last `CompareString2-*.jar` file from the `target` folder.
+
+## How to
 
 ## Distance
 
