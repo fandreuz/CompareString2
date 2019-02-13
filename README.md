@@ -1,6 +1,6 @@
 # CompareString2
 
-[![](https://jitpack.io/v/fAndreuzzi/CompareString2.svg)](https://jitpack.io/#fAndreuzzi/CompareString2)   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)    ![](https://img.shields.io/github/languages/code-size/fAndreuzzi/CompareString2.svg?style=flat)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/it.andreuzzi/comparestring2/badge.svg)](https://maven-badges.herokuapp.com/maven-central/it.andreuzzi/comparestring2)     [![](https://jitpack.io/v/fAndreuzzi/CompareString2.svg)](https://jitpack.io/#fAndreuzzi/CompareString2)   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)    ![](https://img.shields.io/github/languages/code-size/fAndreuzzi/CompareString2.svg?style=flat)
 
 This library is a **wrapper** of *tdebatty*'s [**java-string-similarity**](https://github.com/tdebatty/java-string-similarity). It provides many methods to perform **String** comparison with various algorithms.
 
