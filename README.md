@@ -1,6 +1,6 @@
 # CompareString2
 
-[![](https://jitpack.io/v/fAndreuzzi/CompareString2.svg)](https://jitpack.io/#fAndreuzzi/CompareString2)   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)    [![Maven Central](https://maven-badges.herokuapp.com/maven-central/it.andreuzzi/comparestring2/badge.svg)](https://maven-badges.herokuapp.com/maven-central/it.andreuzzi/comparestring2)
+[![](https://jitpack.io/v/fAndreuzzi/CompareString2.svg)](https://jitpack.io/#fAndreuzzi/CompareString2)   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)    ![](https://img.shields.io/github/languages/code-size/fAndreuzzi/CompareString2.svg?style=flat)
 
 This library is a **wrapper** of *tdebatty*'s [**java-string-similarity**](https://github.com/tdebatty/java-string-similarity). It provides many methods to perform **String** comparison with various algorithms.
 
@@ -9,16 +9,16 @@ This library is a **wrapper** of *tdebatty*'s [**java-string-similarity**](https
 ### Gradle
 ```gradle
 dependencies {
-    implementation 'com.github.fAndreuzzi:CompareString2:v1.0.2'
+    implementation 'it.andreuzzi:CompareString2:1.0.3'
 }
 ```
 
 ### Maven
 ```xml
 <dependency>
-  <groupId>com.github.fAndreuzzi</groupId>
+  <groupId>it.andreuzzi</groupId>
   <artifactId>CompareString2</artifactId>
-  <version>v1.0.2</version>
+  <version>1.0.3</version>
 </dependency>
 ```
 
