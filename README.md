@@ -10,7 +10,7 @@ This library is a **wrapper** of *tdebatty*'s [**java-string-similarity**](https
 ### Gradle
 ```gradle
 dependencies {
-    implementation 'it.andreuzzi:CompareString2:v1.0.5'
+    implementation 'it.andreuzzi:CompareString2:1.0.5'
 }
 ```
 
