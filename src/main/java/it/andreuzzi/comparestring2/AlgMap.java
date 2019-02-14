@@ -84,9 +84,9 @@ public class AlgMap {
         
         /**
          * 
-         * This method builds the {@link Algorithm} instance and uses it for the comparison. It is better to use 
-         *  {@link AlgMap.Alg#compare(ohi.andre.comparestring2.algs.interfaces.Algorithm, java.lang.String, java.lang.String) compare(Algorithm, String, String)} if you need to perform many
-         *  comparisons with the same {@link Algorithm}
+         * This method builds the {@link Algorithm} instance and uses it for the comparison. You should use 
+         *  {@link AlgMap.Alg#compare(it.andreuzzi.comparestring2.algs.interfaces.Algorithm, java.lang.String, java.lang.String) compare(Algorithm, String, String)} instead 
+         *  if you need to perform many comparisons with the same {@link Algorithm}
          * 
          * @param s1    the first {@link String} of the comparison
          * @param s2    the second {@link String} of the comparison

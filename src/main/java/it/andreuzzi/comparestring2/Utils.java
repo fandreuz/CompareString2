@@ -60,7 +60,7 @@ public class Utils {
     /**
      * @param <T>       the class of the returned array
      * @param c         the class that will be used to cast the returned elements
-     * @param items     a sorted array of {@link Compare.CompareItem}
+     * @param items     a sorted array of {@link CompareItem}
      * @param n         the length of the returned array
      * @return          an array of {@code T} containing the first {@code n} elements of {@code items}
      */
@@ -86,12 +86,12 @@ public class Utils {
     
     /**
      * 
-     * @param items             a sorted array of {@link Compare.CompareItem}
+     * @param items             a sorted array of {@link CompareItem}
      * @param deadline          the deadline
-     * @param biggerIsBetter    refer to {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) biggerIsBetter(Alg)}
+     * @param biggerIsBetter    refer to {@link Utils#biggerIsBetter(it.andreuzzi.comparestring2.AlgMap.Alg) biggerIsBetter(Alg)}
      * @return                  the index of the first element before the first element whose {@code r} value is {@code > deadline} if 
-     *                              {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) biggerIsBetter(Alg)} is false, the index of the first element before the first element 
-     *                              whose {@code r} value is {@code < deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) biggerIsBetter(Alg)} is true
+     *                              {@code biggerIsBetter} is false, the index of the first element before the first element whose {@code r} value is {@code < deadline} if 
+     *                              {@code biggerIsBetter} is true
      */
     public static int firstBeyondDeadline(CompareItem[] items, double deadline, boolean biggerIsBetter) {
         boolean check = false;
@@ -113,7 +113,7 @@ public class Utils {
     
     /**
      * 
-     * @param alg
+     * @param alg   the chosen algorithm
      * @return      return {@code true} if {@code alg} belongs to {@link AlgMap.NormSimAlg}. {@code false} otherwise
      */
     public static boolean biggerIsBetter(Alg alg) {
