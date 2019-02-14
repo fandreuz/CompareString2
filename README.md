@@ -10,7 +10,7 @@ This library is a **wrapper** of *tdebatty*'s [**java-string-similarity**](https
 ### Gradle
 ```gradle
 dependencies {
-    implementation 'it.andreuzzi:CompareString2:1.0.3'
+    implementation 'it.andreuzzi:CompareString2:v1.0.5'
 }
 ```
 
@@ -19,7 +19,7 @@ dependencies {
 <dependency>
   <groupId>it.andreuzzi</groupId>
   <artifactId>CompareString2</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.5</version>
 </dependency>
 ```
 
@@ -32,13 +32,13 @@ You can get the last `CompareString2-*.jar` file from the `target` folder.
 ```java
 String s1 = "mystring";
 String s2 = "muswrinh";
-float result = Compare.compare(s1, s2, AlgMap.NormDistAlg.NGRAM);
+float result = Utils.compare(s1, s2, AlgMap.NormDistAlg.NGRAM);
 ```
 
 However, when you need to perform many comparisons with the same algorithm, it's recommended to get an instance of that algorithm and passing it to the method compare:
 ```java
 Algorithm ngram = AlgMap.NormDistAlg.NGRAM.buildArg();
-float result = Compare.compare(s1, s2, ngram, AlgMap.NormDistAlg.NGRAM);
+float result = Utils.compare(s1, s2, ngram, AlgMap.NormDistAlg.NGRAM);
 ```
 
 Some algorithms need/allow one or more parameters in order to be built properly. These are usually values that depends on the use cases. For instance, the algorithm `NGRAM` allows you to pass an `int` value:
@@ -62,19 +62,20 @@ String[] ss = new String[] {"Facebook", "Instagram", "Snapchat", "Twitter", "Wha
 
 #### Best match
 ```java
-String bM = Compare.bestMatch(s1, ss, AlgMap.NormSimAlg.JAROWRINKLER);
+String bM = CompareStrings.bestMatch(s1, ss, AlgMap.NormSimAlg.JAROWRINKLER);
 ```
 
 #### Top n matches
 This method returns an array of `min(n, ss.length)` elements.
 ```java
-String[] topN = Compare.topNmatches(s1, ss, AlgMap.NormSimAlg.JACCARD, 4);
+String[] topN = CompareStrings.topNmatches(s1, ss, AlgMap.NormSimAlg.JACCARD, 4);
 // '4' is an optional argument of the algorithm "Jaccard"
 ```
 
 <br>
 
-Let's redefine `s1`and `ss`. You will notice that, while `s1` **needs** to be a `String` object, `ss` can be **any** `Iterable<? extends Object>`. We use the method `toString()` to get a comparable `String`.
+Let's redefine `s1`and `ss`. You will notice that, while `s1` **needs** to be a `String` object, `ss` can be **any** `Iterable<? extends StringableObject>`. `StringableObject` is an interface which comes with **CompareString2**. We use the method `getString()` to obtain a comparable `String`.
+Let's see an example:
 
 ```java
 String s1 = "jonn";
@@ -85,11 +86,12 @@ List<Contact> ss = Arrays.asList(new Contact[] {new Contact("John", "Doe"),
 .
 .
 
-class Contact {
+class Contact implements StringableObject {
   .
   .
   .
-  public String toString() {
+  @Override
+  public String getString() {
     return name + " " + surname;
   }
 }
@@ -99,7 +101,7 @@ class Contact {
 ```java
 float deadline = 0.55;
 Algorithm sordice = AlgMap.NormSimAlg.SORENSENDICE.buildAlg();
-Object[] aboveDeadline = Compare.withDeadline(s1, ss.size(), ss, deadline, sordice, AlgMap.NormSimAlg.SORENSENDICE);
+Object[] aboveDeadline = CompareObjects.withDeadline(s1, ss.size(), ss, deadline, sordice, AlgMap.NormSimAlg.SORENSENDICE);
 ```
 
 Since `AlgMap.NormSimAlg.SORENSENDICE` is in the category *normalized similarity*, `0` means totally **different**, and `1` means **equal**. So a bigger result means an higher similarity, and this gives the sorting order of the returned array. Check [here](https://github.com/fAndreuzzi/CompareString2#sorting-order) for more details.
@@ -108,6 +110,7 @@ Since `AlgMap.NormSimAlg.SORENSENDICE` is in the category *normalized similarity
 
 Let's redefine one more time `s1`, `ss`, and a new `String[]` object called `splitter`:
 ```java
+// let's suppose that MyFile implements StringableObject
 String[] splitter = new String[] {"-", "_"};
 String s1 = "values";
 Set<MyFile> files = new HashSet<>(Arrays.asList(new MyFile[] {new MyFile("xml-entries.xml"),
@@ -136,7 +139,7 @@ This method returns a `MyFile[]` object which contains **only** `MyFile` objects
 float deadline = 5;
 int n = 2;
 Algorithm lcs = AlgMap.NormSimAlg.LCS.buildAlg();
-MyFile[] objs = Compare.topMatchesWithDeadline(s1, files.size(), files, n, deadline, splitter, damerau, AlgMap.NormSimAlg.SORENSENDICE);
+MyFile[] objs = CompareObjects.topMatchesWithDeadline(s1, files.size(), files, n, deadline, splitter, damerau, AlgMap.NormSimAlg.SORENSENDICE);
 ```
 
 ## Algorithms
