@@ -25,15 +25,21 @@ package it.andreuzzi.comparestring2;
 
 /**
  * 
- * A class which would like to be compared has to implement this interface. It provides a method ({@link StringableObject#getString() getString()}) which allows CompareString to collect a comparable
- *      {@link String} object from an instance
+ * This class holds the result of a comparison.
  *
  * @author francescoandreuzzi
  */
-public interface StringableObject {
-    /**
-     * 
-     * @return a String value that may be compared by {@link CompareObjects}
-     */
-    String getString();
+public class CompareItem {
+    public Object o;
+    public float r;
+    
+    public CompareItem(Object obj, float rank) {
+        this.o = obj;
+        this.r = rank;
+    }
+    
+    @Override
+    public String toString() {
+        return o.toString() + " - " + r;
+    }
 }

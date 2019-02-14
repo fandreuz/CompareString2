@@ -22,8 +22,6 @@
  * THE SOFTWARE.
  */
 package it.andreuzzi.comparestring2;
-
-import it.andreuzzi.comparestring2.Compare.CompareItem;
 import java.util.Comparator;
 
 /**
