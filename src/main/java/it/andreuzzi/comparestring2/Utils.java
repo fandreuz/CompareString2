@@ -66,7 +66,7 @@ public class Utils {
      */
     public static <T> T[] gather(Class<T> c, CompareItem[] items, int n) {
         T[] array = (T[]) Array.newInstance(c, Math.min(n, items.length - 1));
-        for(int i = 0; i <= array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             array[i] = (T) items[i].o;
         }
         
