@@ -29,6 +29,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import it.andreuzzi.comparestring2.AlgMap.Alg;
 import it.andreuzzi.comparestring2.algs.interfaces.Algorithm;
+import java.lang.reflect.Array;
 
 /**
  * 
