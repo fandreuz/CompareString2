@@ -69,6 +69,8 @@ public class Compare {
     
 //    ----------------------------------------------------------------------------------------------------------------
     
+    private static CustomComparator<CompareItem> comparator = new CustomComparator<>();
+    
     /**
      * 
      * @param s1          the first {@link String} of the comparison
@@ -81,18 +83,18 @@ public class Compare {
      *                      The array is sorted with respect of the sorting order given by the chosen {@link Algorithm}
      * @see               CompareItem
      */
-    private static <T> CompareItem[] buildComparePack(String s1, Iterable<T> s2, int size, String[] splitters, Algorithm algInstance, Alg alg) {
+    private static <T extends StringableObject> CompareItem[] buildComparePack(String s1, Iterable<T> s2, int size, String[] splitters, Algorithm algInstance, Alg alg) {
         final String ss1 = normalize(s1);
         
         CompareItem[] toReturn = new CompareItem[size];
-        Iterator<? extends Object> it = s2.iterator();
+        Iterator<? extends StringableObject> it = s2.iterator();
         
         int counter = 0;
         while(it.hasNext()) {
             float result;
             
-            Object t = it.next();
-            String st = normalize(t.toString());
+            StringableObject t = it.next();
+            String st = normalize(t.getString());
             
             if(splitters != null) {
                 result = checkSplits(ss1, st, splitters, algInstance, alg);
@@ -103,23 +105,11 @@ public class Compare {
             toReturn[counter++] = new CompareItem(t, result);
         }
         
-        Arrays.sort(toReturn, Utils.biggerIsBetter(alg) ? bibCmp : bnbCmp);
+        comparator.biggerIsBetter = Utils.biggerIsBetter(alg);
+        Arrays.sort(toReturn, comparator);
+        
         return toReturn;
     }
-    
-    /**
-     * the comparator used when {@code biggerIsBetter} is true
-     */
-    private static final Comparator<CompareItem> bibCmp = (CompareItem o1, CompareItem o2) -> {
-        return (int) Math.signum(o2.r - o1.r);
-    };
-    
-    /**
-     * the comparator used when {@code biggerIsBetter} is false
-     */
-    private static final Comparator<CompareItem> bnbCmp = (CompareItem o1, CompareItem o2) -> {
-        return (int) Math.signum(o1.r - o2.r);
-    };
     
 //    ----------------------------------------------------------------------------------------------------------------
     
@@ -132,7 +122,7 @@ public class Compare {
      * @param args        a list of Object that can be used to build an instance of {@link Algorithm}
      * @return            the single best match of {@code s1} with each element of {@code ss}, found using the given {@link Alg} {@code alg}
      */
-    public static <T> T bestMatch(String s1, T[] ss, Alg alg, Object... args) {
+    public static <T extends StringableObject> T bestMatch(String s1, T[] ss, Alg alg, Object... args) {
         return bestMatch(s1, ss, null, alg, args);
     }
     
@@ -144,7 +134,7 @@ public class Compare {
      * @param alg         an instance of {@link Alg}. It must refer to the same algorithm referred by {@code algInstance}. Check {@link AlgMap} 
      * @return            the single best match of {@code s1} with each element of {@code ss}, found using the given {@link Alg} {@code alg}
      */
-    public static <T> T bestMatch(String s1, T[] ss, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T bestMatch(String s1, T[] ss, Algorithm algInstance, Alg alg) {
         return bestMatch(s1, ss, null, algInstance, alg);
     }
     
@@ -157,7 +147,7 @@ public class Compare {
      * @param args        a list of Object that can be used to build an instance of {@link Algorithm}
      * @return            the single best match of {@code s1} with each element of {@code ss}, found using the given {@link Alg} {@code alg}
      */
-    public static <T> T bestMatch(String s1, T[] ss, String[] splitters, Alg alg, Object... args) {
+    public static <T extends StringableObject> T bestMatch(String s1, T[] ss, String[] splitters, Alg alg, Object... args) {
         Algorithm algInstance = alg.buildAlg(args);
         return bestMatch(s1, ss, splitters, algInstance, alg);
     }
@@ -171,7 +161,7 @@ public class Compare {
      * @param alg         an instance of {@link Alg}. It must refer to the same algorithm referred by {@code algInstance}. Check {@link AlgMap} 
      * @return            the single best match of {@code s1} with each element of {@code ss}, found using the given {@link Alg} {@code alg}
      */
-    public static <T> T bestMatch(String s1, T[] ss, String[] splitters, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T bestMatch(String s1, T[] ss, String[] splitters, Algorithm algInstance, Alg alg) {
         T[] matches = topNmatches(s1, ss, 1, splitters, algInstance, alg);
         if(matches == null || matches.length == 0) return null;
         return matches[0];
@@ -188,7 +178,7 @@ public class Compare {
      * @param args        a list of Object that can be used to build an instance of {@link Algorithm}
      * @return            a sorted array of {@code T} of length {@code n}. The sorting operation is based on the results given by the algorithm {@code alg}
      */
-    public static <T> T[] topNmatches(String s1, T[] ss, int n, Alg alg, Object... args) {
+    public static <T extends StringableObject> T[] topNmatches(String s1, T[] ss, int n, Alg alg, Object... args) {
         return topNmatches(s1, ss, n, null, alg, args);
     }
     
@@ -201,7 +191,7 @@ public class Compare {
      * @param alg         an instance of {@link Alg}. It must refer to the same algorithm referred by {@code algInstance}. Check {@link AlgMap} 
      * @return            a sorted array of {@code T} of length {@code n}. The sorting operation is based on the results given by the algorithm {@code alg}
      */
-    public static <T> T[] topNmatches(String s1, T[] ss, int n, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T[] topNmatches(String s1, T[] ss, int n, Algorithm algInstance, Alg alg) {
         return topNmatches(s1, ss.length, Arrays.asList(ss), n, null, algInstance, alg);
     }
     
@@ -215,7 +205,7 @@ public class Compare {
      * @param args        a list of Object that can be used to build an instance of {@link Algorithm}
      * @return            a sorted array of {@code T} of length {@code n}. The sorting operation is based on the ranks given by the algorithm {@code alg}
      */
-    public static <T> T[] topNmatches(String s1, T[] ss, int n, String[] splitters, Alg alg, Object... args) {
+    public static <T extends StringableObject> T[] topNmatches(String s1, T[] ss, int n, String[] splitters, Alg alg, Object... args) {
         Algorithm algInstance = alg.buildAlg(args);
         return topNmatches(s1, ss, n, splitters, algInstance, alg);
     }
@@ -230,7 +220,7 @@ public class Compare {
      * @param alg         an instance of {@link Alg}. It must refer to the same algorithm referred by {@code algInstance}. Check {@link AlgMap} 
      * @return            a sorted array of {@code T} of length {@code n}. The sorting operation is based on the results given by the algorithm {@code alg}
      */
-    public static <T> T[] topNmatches(String s1, T[] ss, int n, String[] splitters, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T[] topNmatches(String s1, T[] ss, int n, String[] splitters, Algorithm algInstance, Alg alg) {
         return topNmatches(s1, ss.length, Arrays.asList(ss), n, splitters, algInstance, alg);
     }
     
@@ -247,7 +237,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] withDeadline(String s1, T[] ss, float deadline, Alg alg, Object... args) {
+    public static <T extends StringableObject> T[] withDeadline(String s1, T[] ss, float deadline, Alg alg, Object... args) {
         return withDeadline(s1, ss, deadline, null, alg, args);
     }
     
@@ -262,7 +252,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] withDeadline(String s1, T[] ss, float deadline, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T[] withDeadline(String s1, T[] ss, float deadline, Algorithm algInstance, Alg alg) {
         return withDeadline(s1, ss.length, Arrays.asList(ss), deadline, null, algInstance, alg);
     }
     
@@ -278,7 +268,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] withDeadline(String s1, T[] ss, float deadline, String[] splitters, Alg alg, Object... args) {
+    public static <T extends StringableObject> T[] withDeadline(String s1, T[] ss, float deadline, String[] splitters, Alg alg, Object... args) {
         Algorithm algInstance = alg.buildAlg(args);
         return withDeadline(s1, ss, deadline, splitters, algInstance, alg);
     }
@@ -295,7 +285,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] withDeadline(String s1, T[] ss, float deadline, String[] splitters, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T[] withDeadline(String s1, T[] ss, float deadline, String[] splitters, Algorithm algInstance, Alg alg) {
         return withDeadline(s1, ss.length, Arrays.asList(ss), deadline, splitters, algInstance, alg);
     }
     
@@ -313,7 +303,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] topMatchesWithDeadline(String s1, T[] ss, int n, float deadline, Alg alg, Object... args) {
+    public static <T extends StringableObject> T[] topMatchesWithDeadline(String s1, T[] ss, int n, float deadline, Alg alg, Object... args) {
         return topMatchesWithDeadline(s1, ss, n, deadline, null, alg, args);
     }
     
@@ -329,7 +319,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] topMatchesWithDeadline(String s1, T[] ss, int n, float deadline, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T[] topMatchesWithDeadline(String s1, T[] ss, int n, float deadline, Algorithm algInstance, Alg alg) {
         return topMatchesWithDeadline(s1, ss.length, Arrays.asList(ss), n, deadline, null, algInstance, alg);
     }
     
@@ -346,7 +336,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] topMatchesWithDeadline(String s1, T[] ss, int n, float deadline, String[] splitters, Alg alg, Object... args) {
+    public static <T extends StringableObject> T[] topMatchesWithDeadline(String s1, T[] ss, int n, float deadline, String[] splitters, Alg alg, Object... args) {
         Algorithm algInstance = alg.buildAlg(args);
         return topMatchesWithDeadline(s1, ss, n, deadline, splitters, algInstance, alg);
     }
@@ -364,7 +354,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] topMatchesWithDeadline(String s1, T[] ss, int n, float deadline, String[] splitters, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T[] topMatchesWithDeadline(String s1, T[] ss, int n, float deadline, String[] splitters, Algorithm algInstance, Alg alg) {
         return topMatchesWithDeadline(s1, ss.length, Arrays.asList(ss), n, deadline, splitters, algInstance, alg);
     }
     
@@ -379,7 +369,7 @@ public class Compare {
      * @param args        a list of Object that can be used to build an instance of {@link Algorithm}
      * @return            the best match with {@code s1} within {@code ss}, found using the given {@link Alg} {@code alg}
      */
-    public static <T> T bestMatch(String s1, int size, Iterable<T> ss, Alg alg, Object... args) {
+    public static <T extends StringableObject> T bestMatch(String s1, int size, Iterable<T> ss, Alg alg, Object... args) {
         return bestMatch(s1, size, ss, null, alg, args);
     }
     
@@ -392,7 +382,7 @@ public class Compare {
      * @param alg         an instance of {@link Alg}. It must refer to the same algorithm referred by {@code algInstance}. Check {@link AlgMap} 
      * @return            the best match with {@code s1} within {@code ss}, found using the given {@link Alg} {@code alg}
      */
-    public static <T> T bestMatch(String s1, int size, Iterable<T> ss, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T bestMatch(String s1, int size, Iterable<T> ss, Algorithm algInstance, Alg alg) {
         return bestMatch(s1, size, ss, null, algInstance, alg);
     }
     
@@ -406,7 +396,7 @@ public class Compare {
      * @param args        a list of Object that can be used to build an instance of {@link Algorithm}
      * @return            the best match with {@code s1} within {@code ss}, found using the given {@link Alg} {@code alg}
      */
-    public static <T> T bestMatch(String s1, int size, Iterable<T> ss, String[] splitters, Alg alg, Object... args) {
+    public static <T extends StringableObject> T bestMatch(String s1, int size, Iterable<T> ss, String[] splitters, Alg alg, Object... args) {
         Algorithm algInstance = alg.buildAlg(args);
         return bestMatch(s1, size, ss, splitters, algInstance, alg);
     }
@@ -421,7 +411,7 @@ public class Compare {
      * @param alg         an instance of {@link Alg}. It must refer to the same algorithm referred by {@code algInstance}. Check {@link AlgMap} 
      * @return            the best match with {@code s1} within {@code ss}, found using the given {@link Alg} {@code alg}
      */
-    public static <T> T bestMatch(String s1, int size, Iterable<T> ss, String[] splitters, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T bestMatch(String s1, int size, Iterable<T> ss, String[] splitters, Algorithm algInstance, Alg alg) {
         T[] matches = topNmatches(s1, size, ss, 1, splitters, algInstance, alg);
         if(matches == null || matches.length == 0) return null;
         return matches[0];
@@ -439,7 +429,7 @@ public class Compare {
      * @param args        a list of Object that can be used to build an instance of {@link Algorithm}
      * @return            a sorted array of {@code T} of length {@code n}. The sorting operation is based on the ranks given by the algorithm {@code alg}
      */
-    public static <T> T[] topNmatches(String s1, int size, Iterable<T> ss, int n, Alg alg, Object... args) {
+    public static <T extends StringableObject> T[] topNmatches(String s1, int size, Iterable<T> ss, int n, Alg alg, Object... args) {
         return topNmatches(s1, size, ss, n, null, alg, args);
     }
     
@@ -453,7 +443,7 @@ public class Compare {
      * @param alg         an instance of {@link Alg}. It must refer to the same algorithm referred by {@code algInstance}. Check {@link AlgMap} 
      * @return            a sorted array of {@code T} of length {@code n}. The sorting operation is based on the ranks given by the algorithm {@code alg}
      */
-    public static <T> T[] topNmatches(String s1, int size, Iterable<T> ss, int n, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T[] topNmatches(String s1, int size, Iterable<T> ss, int n, Algorithm algInstance, Alg alg) {
         return topNmatches(s1, size, ss, n, null, algInstance, alg);
     }
     
@@ -468,7 +458,7 @@ public class Compare {
      * @param args        a list of Object that can be used to build an instance of {@link Algorithm}
      * @return            a sorted array of {@code T} of length {@code n}. The sorting operation is based on the ranks given by the algorithm {@code alg}
      */
-    public static <T> T[] topNmatches(String s1, int size, Iterable<T> ss, int n, String[] splitters, Alg alg, Object... args) {
+    public static <T extends StringableObject> T[] topNmatches(String s1, int size, Iterable<T> ss, int n, String[] splitters, Alg alg, Object... args) {
         Algorithm algInstance = alg.buildAlg(args);
         return topNmatches(s1, size, ss, n, splitters, algInstance, alg);
     }
@@ -484,7 +474,7 @@ public class Compare {
      * @param alg         an instance of {@link Alg}. It must refer to the same algorithm referred by {@code algInstance}. Check {@link AlgMap} 
      * @return            a sorted array of {@code T} of length {@code n}. The sorting operation is based on the ranks given by the algorithm {@code alg}
      */
-    public static <T> T[] topNmatches(String s1, int size, Iterable<T> ss, int n, String[] splitters, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T[] topNmatches(String s1, int size, Iterable<T> ss, int n, String[] splitters, Algorithm algInstance, Alg alg) {
         Class<T> clazz = (Class<T>) ss.iterator().next().getClass();
         
         CompareItem[] items = buildComparePack(s1, ss, size, splitters, algInstance, alg);
@@ -505,7 +495,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] withDeadline(String s1, int size, Iterable<T> ss, float deadline, Alg alg, Object... args) {
+    public static <T extends StringableObject> T[] withDeadline(String s1, int size, Iterable<T> ss, float deadline, Alg alg, Object... args) {
         return withDeadline(s1, size, ss, deadline, null, alg, args);
     }
     
@@ -521,7 +511,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] withDeadline(String s1, int size, Iterable<T> ss, float deadline, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T[] withDeadline(String s1, int size, Iterable<T> ss, float deadline, Algorithm algInstance, Alg alg) {
         return withDeadline(s1, size, ss, deadline, null, algInstance, alg);
     }
     
@@ -538,7 +528,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] withDeadline(String s1, int size, Iterable<T> ss, float deadline, String[] splitters, Alg alg, Object... args) {
+    public static <T extends StringableObject> T[] withDeadline(String s1, int size, Iterable<T> ss, float deadline, String[] splitters, Alg alg, Object... args) {
         Algorithm algInstance = alg.buildAlg(args);
         return withDeadline(s1, size, ss, deadline, splitters, algInstance, alg);
     }
@@ -556,7 +546,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] withDeadline(String s1, int size, Iterable<T> ss, float deadline, String[] splitters, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T[] withDeadline(String s1, int size, Iterable<T> ss, float deadline, String[] splitters, Algorithm algInstance, Alg alg) {
         Class<T> clazz = (Class<T>) ss.iterator().next().getClass();
         
         CompareItem[] items = buildComparePack(s1, ss, size, splitters, algInstance, alg);
@@ -579,7 +569,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] topMatchesWithDeadline(String s1, int size, Iterable<T> ss, int n, float deadline, Alg alg, Object... args) {
+    public static <T extends StringableObject> T[] topMatchesWithDeadline(String s1, int size, Iterable<T> ss, int n, float deadline, Alg alg, Object... args) {
         return topMatchesWithDeadline(s1, size, ss, n, deadline, null, alg, args);
     }
     
@@ -596,7 +586,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] topMatchesWithDeadline(String s1, int size, Iterable<T> ss, int n, float deadline, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T[] topMatchesWithDeadline(String s1, int size, Iterable<T> ss, int n, float deadline, Algorithm algInstance, Alg alg) {
         return topMatchesWithDeadline(s1, size, ss, n, deadline, null, algInstance, alg);
     }
     
@@ -614,7 +604,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] topMatchesWithDeadline(String s1, int size, Iterable<T> ss, int n, float deadline, String[] splitters, Alg alg, Object... args) {
+    public static <T extends StringableObject> T[] topMatchesWithDeadline(String s1, int size, Iterable<T> ss, int n, float deadline, String[] splitters, Alg alg, Object... args) {
         Algorithm algInstance = alg.buildAlg(args);
         return topMatchesWithDeadline(s1, size, ss, n, deadline, splitters, algInstance, alg);
     }
@@ -633,7 +623,7 @@ public class Compare {
      *                      {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code true}, only elements with
      *                      {@code rank <= deadline} if {@link Utils#biggerIsBetter(ohi.andre.comparestring2.AlgMap.Alg) Utils.biggerIsBetter(alg)} is {@code false}
      */
-    public static <T> T[] topMatchesWithDeadline(String s1, int size, Iterable<T> ss, int n, float deadline, String[] splitters, Algorithm algInstance, Alg alg) {
+    public static <T extends StringableObject> T[] topMatchesWithDeadline(String s1, int size, Iterable<T> ss, int n, float deadline, String[] splitters, Algorithm algInstance, Alg alg) {
         Class<T> clazz = (Class<T>) ss.iterator().next().getClass();
         
         CompareItem[] items = buildComparePack(s1, ss, size, splitters, algInstance, alg);
@@ -674,7 +664,7 @@ public class Compare {
         return result;
     }
     
-    private static Pattern accentPattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+    private static final Pattern accentPattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
     private static final String EMPTYSTRING = "";
     
     /**
