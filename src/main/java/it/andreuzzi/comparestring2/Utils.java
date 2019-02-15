@@ -65,8 +65,10 @@ public class Utils {
      * @return          an array of {@code T} containing the first {@code n} elements of {@code items}
      */
     public static <T> T[] gather(Class<T> c, CompareItem[] items, int n) {
-        T[] array = (T[]) Array.newInstance(c, Math.min(n, items.length - 1));
-        for(int i = 0; i < array.length; i++) {
+        int length = Math.min(n, items.length - 1);
+        if(length < 0) length = 1;
+        T[] array = (T[]) Array.newInstance(c, length);
+        for(int i = 0; i < length; i++) {
             array[i] = (T) items[i].o;
         }
         
