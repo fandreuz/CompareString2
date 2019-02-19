@@ -3,9 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>it.andreuzzi</groupId>
     <artifactId>CompareString2</artifactId>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
     <packaging>jar</packaging>
-    
+
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
@@ -29,7 +29,7 @@
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
-            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -43,7 +43,7 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -57,7 +57,7 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -74,11 +74,11 @@
             </plugin>
         </plugins>
     </build>
-    
+
     <name>${project.groupId}:${project.artifactId}</name>
     <description>A Java library which contains some methods to compare Strings with various algorithms</description>
     <url>https://github.com/fAndreuzzi/CompareString2</url>
-    
+
     <licenses>
         <license>
             <name>MIT License</name>
@@ -94,13 +94,13 @@
             <organizationUrl>http://www.andreuzzi.it</organizationUrl>
         </developer>
     </developers>
-    
+
     <scm>
         <connection>scm:git:git://github.com/fAndreuzzi/CompareString2.git</connection>
         <developerConnection>scm:git:ssh://github.com:fAndreuzzi/CompareString2.git</developerConnection>
         <url>http://github.com/fAndreuzzi/CompareString2/tree/master</url>
     </scm>
-    
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
