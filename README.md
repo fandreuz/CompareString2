@@ -100,7 +100,7 @@ class Contact implements StringableObject {
 ```java
 float deadline = 0.55;
 Algorithm sordice = AlgMap.NormSimAlg.SORENSENDICE.buildAlg();
-Object[] aboveDeadline = CompareObjects.withDeadline(s1, ss.size(), ss, deadline, sordice, AlgMap.NormSimAlg.SORENSENDICE);
+Contact[] aboveDeadline = CompareObjects.withDeadline(Contact.class, s1, ss.size(), ss, deadline, sordice, AlgMap.NormSimAlg.SORENSENDICE);
 ```
 
 Since `AlgMap.NormSimAlg.SORENSENDICE` is in the category *normalized similarity*, `0` means totally **different**, and `1` means **equal**. So a bigger result means an higher similarity, and this gives the sorting order of the returned array. Check [here](https://github.com/fAndreuzzi/CompareString2#sorting-order) for more details.
@@ -138,7 +138,7 @@ This method returns a `MyFile[]` object which contains **only** `MyFile` objects
 float deadline = 5;
 int n = 2;
 Algorithm lcs = AlgMap.NormSimAlg.LCS.buildAlg();
-MyFile[] objs = CompareObjects.topMatchesWithDeadline(s1, files.size(), files, n, deadline, splitter, damerau, AlgMap.NormSimAlg.SORENSENDICE);
+MyFile[] objs = CompareObjects.topMatchesWithDeadline(MyFile.class, s1, files.size(), files, n, deadline, splitter, damerau, AlgMap.NormSimAlg.SORENSENDICE);
 ```
 
 ## Algorithms
