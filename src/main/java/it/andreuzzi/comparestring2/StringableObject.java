@@ -36,4 +36,10 @@ public interface StringableObject {
      * @return a lowercase String value that may be compared by {@link CompareObjects}
      */
     String getLowercaseString();
+    
+    /**
+     * 
+     * @return a public String, this can be used for testing purposes
+     */
+    String getString();
 }

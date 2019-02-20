@@ -30,13 +30,20 @@ package it.andreuzzi.comparestring2;
 public class StringableStringWrapper implements StringableObject {
     
     String s;
+    String lower;
     
     public StringableStringWrapper(String s) {
-        this.s = s.toLowerCase();
+        this.s = s;
+        this.lower = s.toLowerCase();
     }
 
     @Override
     public String getLowercaseString() {
+        return lower;
+    }
+
+    @Override
+    public String getString() {
         return s;
     }
 }
