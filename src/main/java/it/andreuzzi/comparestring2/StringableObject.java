@@ -25,15 +25,15 @@ package it.andreuzzi.comparestring2;
 
 /**
  * 
- * A class which would like to be compared has to implement this interface. It provides a method ({@link StringableObject#getString() getString()}) which allows CompareString to collect a comparable
- *      {@link String} object from an instance
+ * A class which would like to be compared has to implement this interface. It provides a method ({@link StringableObject#getLowercaseString() getLowercaseString()}) which allows CompareString to gather a comparable
+ *      {@link String} object
  *
  * @author francescoandreuzzi
  */
 public interface StringableObject {
     /**
      * 
-     * @return a String value that may be compared by {@link CompareObjects}
+     * @return a lowercase String value that may be compared by {@link CompareObjects}
      */
-    String getString();
+    String getLowercaseString();
 }

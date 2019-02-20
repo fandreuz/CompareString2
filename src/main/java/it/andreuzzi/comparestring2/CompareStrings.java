@@ -64,7 +64,7 @@ public class CompareStrings {
                 result = Utils.compare(ss1, st, algInstance, alg);
             }
             
-            toReturn[counter++] = new CompareItem(st, result);
+            toReturn[counter++] = new CompareItem(new StringableStringWrapper(st), result);
         }
         
         comparator.biggerIsBetter = Utils.biggerIsBetter(alg);

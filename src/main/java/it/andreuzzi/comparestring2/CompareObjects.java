@@ -29,7 +29,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import it.andreuzzi.comparestring2.AlgMap.Alg;
 import it.andreuzzi.comparestring2.algs.interfaces.Algorithm;
-import java.lang.reflect.Array;
 
 /**
  * 
@@ -64,7 +63,7 @@ public class CompareObjects {
             float result;
             
             StringableObject t = it.next();
-            String st = Utils.normalize(t.getString());
+            String st = Utils.normalize(t.getLowercaseString());
             
             if(splitters != null) {
                 result = Utils.checkSplits(ss1, st, splitters, algInstance, alg);

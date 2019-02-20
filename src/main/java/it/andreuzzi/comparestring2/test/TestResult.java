@@ -63,6 +63,6 @@ public class TestResult {
         String what = String.format("(%s - %s)", s1, s2);
         while(what.length() < 30) what = what + " ";
         
-        return String.format("%s %s : %s --> %s [in %dms]", algName, type, what, r, time);
+        return String.format("%s %s : %s --> %s [in %dns]", algName, type, what, r, time);
     }
 }

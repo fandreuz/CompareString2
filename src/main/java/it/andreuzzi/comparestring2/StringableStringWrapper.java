@@ -24,22 +24,19 @@
 package it.andreuzzi.comparestring2;
 
 /**
- * 
- * This class holds the result of a comparison.
  *
  * @author francescoandreuzzi
  */
-public class CompareItem {
-    public StringableObject o;
-    public float r;
+public class StringableStringWrapper implements StringableObject {
     
-    public CompareItem(StringableObject obj, float rank) {
-        this.o = obj;
-        this.r = rank;
+    String s;
+    
+    public StringableStringWrapper(String s) {
+        this.s = s.toLowerCase();
     }
-    
+
     @Override
-    public String toString() {
-        return o.toString() + " - " + r;
+    public String getLowercaseString() {
+        return s;
     }
 }

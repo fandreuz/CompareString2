@@ -37,12 +37,12 @@ public class CustomComparator <T extends CompareItem> implements Comparator<T> {
 
     @Override
     public int compare(T o1, T o2) {
-        if(o1.r == o2.r && o1.o instanceof Comparable) {
+        if(o1.r == o2.r) {
             try {
-		return ((Comparable) o1.o).compareTo(o2.o);
-            } catch(ClassCastException exc) {
-		return 0;
-	    }
+                return ((Comparable) o1.o).compareTo(o2.o);
+            } catch(Exception exc) {}
+            
+            return o1.o.getLowercaseString().compareTo(o2.o.getLowercaseString());
 	} else if(biggerIsBetter) {
             return (int) Math.signum(o2.r - o1.r);
         } else {
