@@ -22,9 +22,6 @@ dependencies {
 </dependency>
 ```
 
-### JAR
-You can get the last `CompareString2-*.jar` file from the `target` folder.
-
 ## How to
 
 ### Single comparison
