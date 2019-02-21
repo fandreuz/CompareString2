@@ -9,7 +9,7 @@ This library is a **wrapper** of *tdebatty*'s [**java-string-similarity**](https
 ### Gradle
 ```gradle
 dependencies {
-    implementation 'it.andreuzzi:CompareString2:1.0.6'
+    implementation 'it.andreuzzi:CompareString2:1.0.8'
 }
 ```
 
@@ -18,7 +18,7 @@ dependencies {
 <dependency>
   <groupId>it.andreuzzi</groupId>
   <artifactId>CompareString2</artifactId>
-  <version>1.0.6</version>
+  <version>1.0.8</version>
 </dependency>
 ```
 
@@ -73,7 +73,7 @@ String[] topN = CompareStrings.topNmatches(s1, ss, AlgMap.NormSimAlg.JACCARD, 4)
 
 <br>
 
-Let's redefine `s1`and `ss`. You will notice that, while `s1` **needs** to be a `String` object, `ss` can be **any** `Iterable<? extends StringableObject>`. `StringableObject` is an interface which comes with **CompareString2**. We use the method `getString()` to obtain a comparable `String`.
+Let's redefine `s1`and `ss`. You will notice that, while `s1` **needs** to be a `String` object, `ss` can be **any** `Iterable<? extends StringableObject>`. `StringableObject` is an interface which comes with **CompareString2**. We use the method `getLowercaseString()` to obtain a comparable `String`. Moreover, you need to implement the method `getString()` for testing purposes (you can return `null` if you don't need it).
 Let's see an example:
 
 ```java
@@ -92,6 +92,10 @@ class Contact implements StringableObject {
   @Override
   public String getString() {
     return name + " " + surname;
+  }
+
+  public String getLowercaseString() {
+    return getString().toLowerCase();
   }
 }
 ```
